@@ -64,14 +64,7 @@ definition - permite criar uma foreign key de outro model;
 specifics attibutes:
 
 
-
-
-
-
-
-ORM METHODS:
-
-
+ORM Methods:
 
 BROWSE()
 
@@ -106,93 +99,6 @@ stud(4,) Not Found
 Dessa forma nós possuimos acesso a um ou múltiplos objetos.
 
 
-
-
 SEARCH()
 
 Nos permite utilizar operações de banco de dados no back end.
-
-
-
-
-SEARCH_COUNT()
-
-first example:
-
-stud_obj = self.env("student_school")
-stud_obj.search_count([])
-
-it will returns all the active records.
-
-second example:
-
-stud_obj = self.env("student_school")
-stud_obj.search_count([('active','=',False)])
-
-it will returns all the inactive records.
-
-
-
-
-READ()
-
-it will read the list or the single record that you are aiming.
-
-example:
-
-stud_obj = self.env("student_school")
-stud_list = stud_obj.search([])
-console: 1,2,3,4,5,6
-stud_list.read([]) or stud_list.read(['id','name','bdate'])
-it will returns a json data related to the previous instruction.
-
-
-
-
-EXISTS()
-
-it will verify if exists the passed record.
-
-example:
-
-stud_obj = self.env("student_school")
-stud_list = stud_obj.browse([1,2,3,4,5])
-for stud in stud_list:
-	if stud.exists():
-		stud.id
-		stud.name
-	else:
-		print(stud,"Not Found")
-
-
-
-		
-ENSURE_ONE()
-
-def method(self):
-	self.ensure_one()
-
-ensures that only have one record.
-
-stud_obj = self.env("student_school")
-stud_list = stud_obj.search([])
-stud_list.method()
-console: error, expected singleton.
-
-for stud in stud_list: 
-	stud.method()
-
-console: ok.
-
-
-
-
-GET_METADATA()
-
-show us the record metadata, similar to read() function, but it gives xml_id information.
-
-
-
-FIELDS_GET()
-
-it will gives us a dictionary related to object fields.
