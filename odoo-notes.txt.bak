@@ -196,3 +196,20 @@ show us the record metadata, similar to read() function, but it gives xml_id inf
 FIELDS_GET()
 
 it will gives us a dictionary related to object fields.
+
+
+
+FIELDS_VIEW_GET()
+
+you can add some labels in form trought model.
+
+
+
+NAME_GET()
+
+it let us to change the record name that is displayed in many2one field.
+
+
+
+_NAME_SEARCH()
+
