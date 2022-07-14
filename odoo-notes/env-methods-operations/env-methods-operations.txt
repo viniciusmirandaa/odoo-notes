@@ -1,0 +1,117 @@
+environment (env):
+
+env.user 
+console: 
+res.users(1,)
+for propouse of knowing the current user.
+
+env.lang 
+console:
+'en_US'
+for porpouse of knowing user language.
+
+env.company
+console:
+res.company(1,)
+for porpouse of knowing user company.
+
+env.companies
+console:
+res.company(1,)
+for porpouse of knowing user companies.
+
+env.context
+console:
+{'lang': 'en_US', 'tz': False}
+for porpouse of knowing current context.
+
+env.cr
+console:
+for porpouse of using crud operations.
+
+env.['model']
+for porpouse acessing some model environment.
+
+env.context
+console:
+{'lang': 'en_US', 'tz': False}
+for porpouse of knowing current context.
+
+dir(env)
+list of commands.
+
+
+
+
+how to modify user environment:
+
+
+field with context:
+
+custom_context = self.env.context.copy() # using context environment
+custom_context
+console:
+{'lang': 'en_US', 'tz': False}
+
+custom_context['default_phone'] = '123456'
+custom_context
+console:
+{'lang': 'en_US', 'tz': False, 'default_phone': '123456'}
+
+partner_obj = self.env['res.partner']
+
+# giving a context to create a new partner #
+partner_obj.with_context(custom_context).create({'name':'with_context() Partner.'})
+
+putting in create method:
+return super(Partner, self.with_context(self.env.context)).create(vals)
+
+structure of line code:
+object.with_context(context).create({'name': 'name_of_partner'})
+
+
+choosing user:
+
+weblearn_user = self.env['res.users'].browse(6)
+
+self.env.user.name # using user environment
+console:
+'OdooBot'
+
+# choosing user web_learn to create a new partner #
+partner_obj.with_user(weblearn_user).create({'name': 'WebLearn User Partner with_context'})
+
+structure of line code:
+object.with_user(user_id).create({'name': 'name_of_partner'})
+
+
+
+changing company:
+
+partner_obj = self.env['res.partner']
+
+self.env.company # using company environment
+console:
+res.company(1,)
+
+self.env.user.name # using user environment to get user name
+console:
+'OdooBot'
+
+company_b = self.env['res.company'].browse(2)
+
+partner_obj.with_company(company_b).create({'name': 'Differente company partner'})
+
+
+
+changing cursor:
+
+new_cr = registry(self.env.cr.dbname).cursor()
+partner_id = self.env['res.partner'].with_env(self.env(cr=new_cr)).create({'name': 'New partner with CR.'})
+partner_id.env.commit()
+
+
+
+passing all permission to a user that hasnt some of them:
+
+put .sudo() before the create method call in code line.
