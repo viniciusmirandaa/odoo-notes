@@ -69,8 +69,6 @@ return super(Partner, self.with_context(self.env.context)).create(vals)
 structure of line code:
 object.with_context(context).create({'name': 'name_of_partner'})
 
-can use both _context and env.context
-
 
 choosing user:
 

@@ -1,0 +1,33 @@
+executing sql querys:
+
+# showing connected db #
+env.cr.dbname
+
+
+select query:
+
+self.env.cr.execute("select * from db_table")
+self.env.fetchall() # responsible for returning all records from query
+
+
+insert query:
+
+self.env.cr.execute("insert into db_table(name) values('weblearns student.')")
+self.env.cr.commit() # responsible for commit the previously query
+
+
+update query:
+
+self.env.cr.update("update school_student set name='Example' where id=2")
+self.env.cr.commit()
+
+
+delete query:
+
+self.env.cr.delete("delete from school_student where id=11")
+self.env.cr.commit()
+
+
+
+
+you can use both self.env.cr.query and self._cr.query.

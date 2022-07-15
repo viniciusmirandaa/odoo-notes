@@ -1,0 +1,126 @@
+records delete periodically
+used for operational purpose
+it is necessary both .py and .xml file important for the execution of wizard feature
+
+
+
+
+
+creating a wizard .py file:
+
+class WizardNameWizard(models.TransientModel):
+	_name = 'wizard.name.wizard'
+	
+	total_fees = fields.Char(
+		string = "Total Fees",
+	)
+	
+	def update_student_fees(self):
+		
+		self.env['school.student'].browse(self._context.get("active_ids")).update({'total_fees': self.total_fees}) # "active_ids" is the id of the active record
+		return True
+	
+	
+	
+	
+creating a wizard .xml file:
+
+<odoo>
+
+	<record id='wizard_attr_action' model='ir.actions.act_window'>
+        <field name="name">Wizard</field>
+        <field name="res_model">wizard.name.wizard</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id='wizard_form' model='ir.ui.view'>
+        <field name="name">Wizard Form</field>
+        <field name="model">wizard.name.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="total_fees"/>
+                    </group>
+                </group>
+				
+				<footer>
+					<button string="Update Fees" type="object" name="update_student_fees"/>
+					<button string="Cancel" special="cancel" class="btn btn-secondary"/>
+				</footer>
+            </form>
+        </field>
+    </record>
+</odoo>
+
+
+create a button on your non wizard model.
+
+def wiz_open(self):
+
+    return self.env['ir.actions.act_window']._for_xml_id("school_student.fees_update_action") # school_student is the module name and student_fees_update_action ir wizard action
+
+	or
+
+	return {'type': 'ir.actions.act_window', # type of action we want
+			'res_model': 'wizard.name.wizard', # wizard model name
+			'view_mode': 'form', # which type of view 
+			'target': 'new', # if we want to open wizard in the same screen or in a pop-up(new means pop-up and current a new screen)
+			}
+
+
+
+we can open wizard using different types:
+
+ - using button click(object type)
+ - using button click(action type)
+ - using menu click(object type)
+ - using action menu
+ 
+
+ 
+button click(object type):
+			
+on your wizard view 
+	
+<button string="Method Name" type="object" name="wizard_method_name"/>
+
+
+
+
+
+button click(action type):
+
+on your main view
+
+<button>name="module_name.wizard_action_name" string="Wizard Button by Action" type="action"</button>
+
+
+
+
+
+menu click:
+
+on your wizard view
+
+<menuitem name="Fees Update" id='menu_student_fees_update' parent='menu_parent_id' action="module_name.wizard_action_name"/>
+
+
+
+
+
+
+
+action menu:
+
+on your wizard view
+
+	<record id='wizard_attr_action' model='ir.actions.act_window'>
+        <field name="name">Wizard</field>
+        <field name="res_model">wizard.name.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref = "module_name.wizard_form_view_name"/>
+        <field name="target">new</field>
+		<field name="binding_model_id" ref="model_school_student"/>
+		<field name="binding_view_types">form</field> # if show in tree view has to add list,form
+    </record>
