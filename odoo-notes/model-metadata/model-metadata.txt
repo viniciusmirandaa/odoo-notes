@@ -1,0 +1,135 @@
+model attributes
+
+
+_name:
+ - common attribute;
+ - used to ddefine model name;
+ - syntax: _name = 'student.profile';
+ 
+ 
+
+ 
+_description:
+ - common attribute;
+ - used to define model information;
+ - syntax: _description = 'This model description';
+ 
+ 
+ 
+ 
+_inherit:
+ - common attribute;
+ - used to inherit (extend) model;
+ - syntax: _inherit = 'student.profile';
+ 
+ 
+ 
+ 
+ _inherits:
+ - common attribute;
+ - used to inherits (extend) multi models;
+ - syntax: _inherits = {'student.profile': 'student_id'};
+ 
+ 
+ 
+ 
+_rec_name:
+ - common attribute;
+ - used to display specific field name in relational fiield;
+ - syntax: _rec_name = 'name';
+ - default value is name field, if not declared name as a field it will use 'id, model.name'
+ 
+ 
+ 
+_order:
+ - common attribute;
+ - used to order by record set;
+ - syntax: _order = 'id';
+ - default value is id field as ascending order;
+ 
+ 
+ 
+_table:
+ - used to define custom table name in postgres side;
+ - syntax: _table = "student"
+ - default value is _name value;
+ 
+ 
+ 
+_auto:
+ - used to stop auto create table in postgres database;
+ - syntax: _auto = True;
+ - default value is True value;
+ 
+ 
+ 
+_sql_constraints:
+ - used to create table level constraints not from odoo side;
+ - syntax: _sql_constraints = [('name of the sql constraint name', 'sql constraint condition', 'user message')]
+ 
+ 
+ 
+ 
+_sequence:
+ - used to create custom sequence name to use for id field;
+ - syntax: _sequence = "your custom sequence name";
+ - by default ira model_name_id_seq
+ 
+ 
+ 
+
+_register:
+ - used to not visible in ORM registry, meant to be python-inherited only;
+ - syntax: _register = False;
+ - by default is True;
+ 
+ 
+ 
+ 
+_transient:
+ - while create transient model that time this attribute auto True;
+ - syntax: _transient = True;
+ - by default is False
+ 
+
+ 
+ 
+_abstract:
+ - while create abstract model that time this attribute auto True;
+ - syntax: _abstract = True;
+ - by default is True;
+ 
+ 
+ 
+_fold_name:
+ - field to determine folded groups in kanban views;
+ - syntax: _fold_name = "fold"
+ 
+ 
+
+
+_check_company_auto:
+ - using multi company that time used such attribute;
+ - on create/update recordset to call _check_company to ensure companies consistency on the relation fields having check_company = True as attribute;
+ - syntax: _check_company_auto = True;
+ 
+ 
+ 
+_parent_name:
+ - working in parent child concept with same model;
+ - define many2one field in same model;
+ - syntax: _parent_name = "m2o_field_name";
+ 
+ 
+ 
+_parent_store:
+ - working in parent child concept with same model;
+ - set to True to compute parent_path field;
+ - syntax: _parent_store = True;
+ - parent_path = fields.Char(index= True);
+ 
+ 
+_log_access:
+ - ORM framework should auto generate and update access log fields;
+ - syntax: _log_Acces = True;
+ - this attribute is depend on _auto attribute

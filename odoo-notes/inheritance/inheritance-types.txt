@@ -1,0 +1,87 @@
+
+first way:
+
+_inherit different model from the original one. By doing some changes, it will be changed at the original too.
+
+school_student model: 
+
+name;
+school_id;
+age;
+fees;
+
+
+
+at another model create a inheritance related to school_student to add new fields to it.
+
+school_extended model:
+
+_inherit = 'school_student'
+
+student_full_name;
+
+
+
+school_student model now:
+
+name;
+school_id;
+age;
+fees;
+student_full_name;
+
+
+
+xml way:
+
+<record model="ir.ui.view" id="school_student.form">
+	<field name="name">school_student form</field>
+	<field name="model">school.student</field>
+	<field name="inherit_id" ref="module_name.form_name"/>
+	<field name="arch" type="xml">
+		<field name="name" position="after">
+			<field name="student_full_name"/>
+		</field>
+	</field>
+</record>
+
+
+
+
+second way: 
+
+if want to reuse some fields that are in another model, tou can simply _inherit this model for that.
+
+
+class Adress(models.Model): # model that we want to reuse
+	_name = "address"
+	_rec_name = "street"
+	
+	fields:
+	street;
+	street_one;
+	city;
+	state;
+	country;
+	zip_code;
+	
+
+
+class school_student(models_Model):
+	_name="school.student"
+	_inherit="address"
+	
+	school_student field...
+	
+
+that way you have access to both models fields. Allowing you to put them in xml file too.
+
+
+
+
+third way:
+
+
+by using _inherits u can use multiple inheritance and extend object fields and methods.
+
+

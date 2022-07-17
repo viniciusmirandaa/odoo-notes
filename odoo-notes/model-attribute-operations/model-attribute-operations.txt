@@ -1,0 +1,84 @@
+_rec_name:
+
+it will change many2one field relation display in client side.
+
+by default it will display name field, and if not declared in model side it will display as default 'id, model_name'.
+
+if want to use more than one field, it have to use name_get method to specify _rec_name display.
+
+
+
+
+_order:
+
+display the records by the order that you specify previously:
+
+examples:
+
+_order = "id desc";
+
+_order = "name";
+
+_order = "name, id desc"
+
+by default is id in ascending order;
+
+if you have a one2many relation with this model, the relation's order it will be displayed as _order attribute;
+
+you can change order return by using search method:
+
+self.env['model_that_has_order_attributte'].search([], order="id desc")
+
+
+
+
+_log_access:
+
+by default it will create log_access values, as create_date, create_uid, write_date, write_uid;
+
+by setting this attribute to False, those fields woulndt be created;
+
+you can use this on a scenario that u have this model only for record porpouse and it wound't be displayed in front end side;
+
+
+ 
+
+
+_sequence:
+
+it is the sequence of the particular model;
+
+by default it uses id increment by 1;
+
+
+
+
+
+_sql_constraints:
+
+types:
+ - not null
+ - unique
+ - primary key
+ - foreign key
+ - check
+ - exclusion
+
+it allows to put some validations on fields.
+
+structure: 
+('sql_constraint_name','sql_constraint_condition','message')
+
+example:
+_sql_constraint = [
+	('unique_name','unique (name)','Please provide some unique name.')
+]
+you can add more than one constraint validation.
+_sql_constraint = [
+	('unique_name','unique (name)','Please provide some unique name.'),
+	('check_total_fees','check(total_fees>200)','Minimun amount equals to 201')
+]	
+	
+	
+	
+]
