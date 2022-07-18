@@ -1,6 +1,6 @@
 records delete periodically
 used for operational purpose
-it is necessary both .py and .xml file for the execution of wizard feature
+it is necessary both .py and .xml file important for the execution of wizard feature
 
 
 
@@ -125,27 +125,3 @@ on your wizard view
 		<field name="binding_model_id" ref="model_school_student"/>
 		<field name="binding_view_types">form</field> # if show in tree view has to add list,form
     </record>
-	
-	
-	
-conclusion:
-
-you can call wizard form without creating a button in primary model (non wizard model), unless you want to give context to wizard form.
-
-only calling action on non wizard view:
-
-<header>
-    <button name="school-student.update_student_fees_action" string="Student Fees" type="action"/>
-</header>
-
-callin wizard by button in non wizard model:
-
-    def student_fees_wiz_open(self):
-        return self.env['ir.actions.act_window']._for_xml_id("school-student.update_student_fees_action")
-		
-		
-	and 
-	
-	<header>
-        <button name="student_fees_wiz_open" string="Student Fees" type="object"/>
-    </header>
