@@ -1,0 +1,96 @@
+to create a csv file having multiples models on a module, you have to refer the model's name in csv file:
+
+res.partner.csv
+
+structure:
+
+street,street_one,city,state,country,zip_code #those are model's attributes.#
+
+
+real scenario:
+
+
+
+.py file:
+
+class Hobbies(models.Model):
+	_name = "hobbies"
+	
+	name = fields.Char(
+		string = "Hobby"
+	)
+	
+	
+csv file:
+
+name: hobby.csv # if it has the wrong model name mencion, it will raise an error
+
+structure:
+
+id,name # id has to be unique
+hobby_1,"Hobby1" 
+hobby_2,"Hobby2"
+hobby_3,"Hobby3"
+hobby_4,"Hobby4"
+
+if you change the record's name, when updating csv file, it will only update changed attribute.
+
+
+
+
+with many2one field:
+
+csv file:
+
+school.profile.cvs
+
+id,name,school_number
+school_1,"CSV School Name","10"
+
+
+
+csv file:
+
+school.student.csv
+
+id,name,school_id:id,total_fees
+student_1,"Student Name",school_1,6000
+
+
+
+with one2many field:
+
+csv file:
+
+csv file:
+
+school.student.csv
+
+id,name,school_id:id,total_fees
+student_1,"Student Name",school_1,6000 # only refers which id you are using, that way one2many field will populate by it self.
+
+
+
+with many2many field:
+
+
+csv file:
+
+name: hobby.csv
+
+structure:
+
+id,name 
+hobby_1,"Hobby1" 
+hobby_2,"Hobby2"
+hobby_3,"Hobby3"
+hobby_4,"Hobby4"
+
+
+csv file:
+
+school.student.csv
+
+id,name,school_id:id,total_fees,hobby_list:id
+student_1,"Student Name",school_1,6000,"hobby_1,hobby_2,hobby_3"
+

@@ -65,7 +65,7 @@ _auto:
  
 _sql_constraints:
  - used to create table level constraints not from odoo side;
- - syntax: _sql_constraints = [('name of the sql constraint', 'sql constraint condition', 'user message')]
+ - syntax: _sql_constraints = [('name of the sql constraint name', 'sql constraint condition', 'user message')]
  
  
  

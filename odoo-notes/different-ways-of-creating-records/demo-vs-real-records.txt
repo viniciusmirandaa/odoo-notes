@@ -1,0 +1,7 @@
+type of records:
+ - demo records
+ - real records
+ 
+ if using stage or development server, you can use demo data. in production server you use real data.
+ 
+ 
