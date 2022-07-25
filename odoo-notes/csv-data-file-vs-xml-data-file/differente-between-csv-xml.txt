@@ -1,0 +1,22 @@
+csv:
+
+ - easy to create records;
+ - no specific syntax need to follow;
+ - supports all relational fields to create records;
+ - attributs not supported in csv file;
+ - noupdate not supported;
+ - you cant create multiple models record in one csv file;
+ - csv file name must be model name;
+ - you cant create demo data.
+ 
+ 
+xml:
+
+ - not easy like csv file;
+ - follow specific syntex;
+ - supports all relational fields to create records;
+ - attributes supported in xml file;
+ - supported noupdate attribute;
+ - you can create multiple models record in one xml file;
+ - user can create any name no restriction;
+ - you can create demo data.

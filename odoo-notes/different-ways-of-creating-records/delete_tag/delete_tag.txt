@@ -30,3 +30,15 @@ menu:
 	<delete id="menu_name" model="ir.ui.menu"/> # target's id and model 
 </odoo>
 
+
+
+
+
+
+multiple targets:
+
+<odoo>	
+	<delete model="hobby" search="[('name', 'ilike', 'Hobby')]"/> # target's model and condition 
+</odoo>
+
+

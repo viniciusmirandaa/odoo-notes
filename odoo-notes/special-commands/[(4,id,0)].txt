@@ -1,0 +1,6 @@
+(3, id, 0): link record to One2Many field
+
+def button_command_4(self):
+	self.write({'student_list': [(4, 311, 0), (4, 312, 0)]})
+	
+that way, we can link again a record that was unliked with command [(3,id,0)]

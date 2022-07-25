@@ -1,0 +1,7 @@
+(2, id, 0): remove child model from parent model
+
+def button_command_2(self):
+	self.write({'student_list': [(2, 321, 0), (2, 312, 0)]})
+	
+	
+this way, the record will be deleted.

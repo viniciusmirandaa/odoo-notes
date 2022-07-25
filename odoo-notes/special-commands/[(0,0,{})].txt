@@ -1,0 +1,40 @@
+(0, 0, {}): creating a one2many record.
+
+
+1 - Create a child model(one2many) for existing parent model.
+
+def button_command_0(self):
+	student_obj = self.env['school.student']
+	stud_id = student_obj.create({'name':"Student ONE", 'school_id':self.id}) # school_id is the many2one field from relation model, creating so, a record on one2many field.
+
+
+2 - Create parent model and child model.
+
+def button_command_0(self):
+	school_id = self.create({'name': 'School FATEC'})
+	student_obj.create({'name': 'Student 1', 'school_id':school_id.id})
+	student_obj.create({'name': 'Student 2', 'school_id':school_id.id})
+	student_obj.create({'name': 'Student 3', 'school_id':school_id.id})
+	student_obj.create({'name': 'Student 4', 'school_id':school_id.id})
+	student_obj.create({'name': 'Student 5', 'school_id':school_id.id})
+
+
+3 - Creating parent model and child model using Special Command.
+
+def button_command_0(self):
+	self.create({'name': 'FATEC Ferraz', 'student_list': [(0, 0, {'name': 'Vinicius 1'}})
+														  (0, 0, {'name': 'Vinicius 2'}})
+														  (0, 0, {'name': 'Vinicius 3'}})]}) # we will create another model 
+
+
+
+
+
+
+
+	self.write({'student_list': [(0, 0, {'name': 'Vinicius 1'}})
+								 (0, 0, {'name': 'Vinicius 2'}})
+								 (0, 0, {'name': 'Vinicius 3'}})]}) # we will create in the same model
+							 
+							 
+							 

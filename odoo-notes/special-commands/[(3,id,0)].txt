@@ -1,0 +1,7 @@
+(3, id, 0): remove record from One2Many list but not permanent delete
+
+def button_command_3(self):
+	self.write({'student_list': [(3, 311, 0), (3, 312, 0)]})
+	
+	
+this way, the record won't be deleted from database.

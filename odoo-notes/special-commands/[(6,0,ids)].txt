@@ -1,0 +1,14 @@
+(6, 0, ids): refering many2many fields
+
+it is used to add a field in a many2many relation and to take it out of it too.
+
+
+def button_command_6(self):
+	self.write({'hobby_list': [(6, 0, ,[(1,2,3)])]}) #  that way, we are going to add those ids in hobby list
+	
+
+def button_command_6(self):
+	self.write({'hobby_list': [(6, 0, ,[(1)])]}) #  that way, we are going to remove this id from hobby list, if he was already at it
+	
+	
+we cannot create a record using this command, only refer an existing one.

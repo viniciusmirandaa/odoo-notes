@@ -1,0 +1,7 @@
+(5, 0, 0): remove all one2many records
+
+def button_command_5(self):
+	self.write({'student_list': [(5, 0, 0)]})
+	
+	
+it does the same that command 3, but instead of remove 1 record per time, it does delete all records.
