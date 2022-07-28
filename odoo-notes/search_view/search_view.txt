@@ -1,0 +1,57 @@
+add search patterns:
+
+<field name="name" string="Student Name" filter_domain="['|', ('name', 'ilike', self), ('last_name', 'ilike', self)]"
+
+string - the way it will be displayed at client side.
+name - name of the field in model side.
+filter_domain - the filter that you want your field to have on search
+
+
+
+
+
+add custom filters:
+
+<filter string="RollNumbers" name="roll_number" domain="[('roll_number', '!=', False)]" />
+
+string - the way it will be displayed at client side.
+name - field name in model side.
+domain - which roll_number records you wish to return.
+
+by doing that, you will add a permanently filter on your filter option.
+
+to use and condition on search, the second parameter has to be set as 'is set' by going in 'add custom filter'.
+
+
+
+
+
+
+
+add group by filter:
+
+<group> string="Group By">
+	<filter name="school_id" string="School" context="{'group_by':'school_id'}"/>
+</group>
+
+
+that way we can add a group by filter by default in group by options.
+
+
+
+
+
+
+
+
+how to add a search panel:
+
+we are only able to define either selection or relation field.
+
+<searchpanel>
+	<field name="school_id" select="multi" enable_counters="1"/>
+</searchpanel>
+
+name - field name.
+select - able to select multiples options at once.
+enable_counters - counts how many records the category has.
