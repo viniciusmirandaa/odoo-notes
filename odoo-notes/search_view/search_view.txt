@@ -55,3 +55,15 @@ we are only able to define either selection or relation field.
 name - field name.
 select - able to select multiples options at once.
 enable_counters - counts how many records the category has.
+
+
+
+
+
+
+dynamic filter based on date time and day related filter:
+
+
+<filter string="create_date" name="Create Date" domain="[('create_date', '>=', context_today().strftime('%Y-%m-%d'))]" />
+
+<filter string="create_date" name="Create Date" domain="[('create_date', '>=', (context_today() + datetime.timedelta(-6)).strftime('%Y-%m-%d'))]" />

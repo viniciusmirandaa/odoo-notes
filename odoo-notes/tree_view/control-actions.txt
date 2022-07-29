@@ -1,0 +1,27 @@
+<tree create="0">...
+
+it will create button invisible on tree view.
+
+
+
+<tree export_xlsx="0">
+
+it will turn invisible export option on tree view.
+
+
+
+<tree delete="0">
+
+turn invisible delete at action options.
+
+
+
+<tree duplicate="0">
+
+turn invisible duplicate at action options.
+
+
+
+<tree import="0">
+
+if create option is avaible, this will turn invisible import option in favorite.

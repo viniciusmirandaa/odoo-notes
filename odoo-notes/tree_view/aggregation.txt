@@ -1,0 +1,14 @@
+sum:
+
+<field name="field" sum="Total of fields"/>
+
+it will appear at the bottom of the field refered.
+
+
+
+
+
+
+<field name="field" avg="Average of fields"/>
+
+it will appear at the bottom of the field refered.

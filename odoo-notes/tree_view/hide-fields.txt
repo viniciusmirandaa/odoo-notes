@@ -1,0 +1,11 @@
+<field name="field" optional="hide"/>
+
+this way it will hide the refered field from tree view, but it can be shown again, clicking on the option.
+
+
+<field name="field" optional="show"/>
+
+this one will show the field on tree view.
+
+
+after the user action, the fields will be showed as they are.

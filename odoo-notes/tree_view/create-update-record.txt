@@ -1,0 +1,10 @@
+in our tree view, add editable attribute:
+
+
+<tree editable="top">...
+
+or
+
+<tree editable="bottom">...
+
+that way, we can create or write any record through tree.

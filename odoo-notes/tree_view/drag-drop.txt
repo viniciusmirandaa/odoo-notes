@@ -1,0 +1,14 @@
+creat an integer field on model side:
+
+_order = "model_seq"
+
+
+model_seq = fields.Integer(
+	string="Sequence",
+)
+
+
+and then, add in xml side:
+
+<field name="model_seq" widget="handle"/>
+

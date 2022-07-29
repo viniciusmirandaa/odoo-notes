@@ -1,0 +1,10 @@
+inside the tree tag, put:
+
+<button name="button_name" string="Button in Tree" type="object" class="fa icon"/>
+
+this button will appear for every record.
+
+the class attribute will put a icon into button.
+
+
+

@@ -1,0 +1,16 @@
+bold: 
+<field name="field" decoration-bf="1"/>
+
+
+italic:
+<field name="field" decoration-it="1"/>
+
+
+red letter:
+<field name="field" decoration-danger="1"/>
+
+
+apply condition:
+
+style-field="id>20"
+style-field="field=='dog'"
