@@ -1,0 +1,18 @@
+perform specific actio nwhile install or uninstall any module.
+
+- pre hook;
+- post hook;
+- uninstall hook;
+- post load hook.
+
+
+it has to add those features in the manifest file, after demo section:
+
+'pre_init_hook': 'method_name',
+'post_init_hook': 'method_name',
+'uninstall_hook': 'method_name',
+'post_load': 'method_name'
+
+
+
+after that, it has to create a model with the method you refered.

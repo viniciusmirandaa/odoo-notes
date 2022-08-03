@@ -1,0 +1,35 @@
+<record id="calendar_view_name" model="ir.ui.view">
+	<field name="name">calendar.view.name</field>
+	<field name="model">model.name</field>
+	<field name="arch" type="xml">
+		<calendar date_start="create_date"> # here we provide the date or date time field.
+			<field name="name"/>
+		</calendar>
+	</field>
+</record>
+
+for calendar view be visible, it has to be add at action:
+
+<record model...
+	...
+	...
+	<field name="view_mode">calendar,kanban,tree,form</field>
+</record>
+
+
+
+at client side it will be shown the records on the day they were created.
+
+by clicking in the record, it will display the day, month and year it was created, and below that, the fields that were refered in calendar view.
+
+
+
+<record id="calendar_view_name" model="ir.ui.view">
+	<field name="name">calendar.view.name</field>
+	<field name="model">model.name</field>
+	<field name="arch" type="xml">
+		<calendar date_start="create_date" mode="month"> # by that way, we are seting a default value for calendar display.
+			<field name="name"/>
+		</calendar>
+	</field>
+</record>

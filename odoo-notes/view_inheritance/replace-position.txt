@@ -1,0 +1,41 @@
+it will remove the refered field from parent view.
+
+<record id="student_list_view_extend" model="ir.ui.view">
+	<field name="name">student.list.view.extend</field>
+	<field name="model">school.student</field>
+	<field name="inherit_id" ref="module_name.xml_id"/>
+	<field name="arch" type="xml">
+		<xpath expr="//group[@id="group_3"]" position="replace"> 
+		</xpath>
+	</field>
+</record>
+
+
+
+
+<record id="student_list_view_extend" model="ir.ui.view">
+	<field name="name">student.list.view.extend</field>
+	<field name="model">school.student</field>
+	<field name="inherit_id" ref="module_name.xml_id"/>
+	<field name="arch" type="xml">
+		<field name="id" position="replace"> 
+			<field name="write_date"/>
+		</field>
+	</field>
+</record>
+
+
+<record id="student_list_view_extend" model="ir.ui.view">
+	<field name="name">student.list.view.extend</field>
+	<field name="model">school.student</field>
+	<field name="inherit_id" ref="module_name.xml_id"/>
+	<field name="arch" type="xml">
+		<field name="id" position="replace"> 
+			<field name="id" required="1"/>
+			<field name="write_date"/>
+			<field name="write_uid"/>
+		</field>
+	</field>
+</record>
+
+this way, it will replace the refered field with the other three ones.

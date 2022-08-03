@@ -1,0 +1,54 @@
+we use post_init_hook when to execute some kind of operation after upgrading a module.
+
+
+
+add this hook on manifest file:
+ 
+'post_init_hook':'hook_example_post_init'
+
+
+
+case:
+
+we want to update contact's tax when its null every time when updating the module.
+
+
+
+with raw query:
+
+on __init__.py file, create a method:
+
+def hook_example_post_init(cr, registry):
+	cr.execute("update res_partner set vat='123456' where vat=''");
+	cr.commit()
+	
+	
+	
+	
+	
+	
+with orm:
+
+on __init__.py file, create a method:
+
+from odoo import api, SUPERUSER_ID
+
+def hook_example_post_init(cr, registry):
+	env = api.Environment(cr, SUPERUSER_ID, {})
+	env['res.partner'].update_tax_contact()
+	
+	
+
+on inherited res_partner model:
+
+class Partner(models.Model):
+	_inherit="res.partner"
+	
+	for rec in self.search([]):
+		if rec.vat == False:
+			rec.vat = '123456'
+	
+	
+	
+	
+	

@@ -1,0 +1,138 @@
+how to create kanban view:
+
+<record id="kanban_view_name" model="ir.ui.view">
+	<field name="name">kanban.view.name</field>
+	<field name="model">model.name</field>
+	<field name="arch" type="xml">
+		<kanban>
+				<field name="name"/> # it has to be refered here first, before printing it in span tag.
+				<templates>
+					<t t-name="kanban-box">
+						<field name="name"/> # this one is the tree diplay
+					</t>
+				</templates>
+		</kanban>
+	</field>
+</record>
+
+
+for kanban view be visible in client side, it has to be refered in action record:
+
+<record model...
+	...
+	...
+	<field name="view_mode">kanban,tree,form</field>
+</record>
+
+
+
+
+
+
+
+
+clickable kanban view:
+
+by just doing the previously way, we cannot click on those kanban forms that we just created.
+
+<record id="kanban_view_name" model="ir.ui.view">
+	<field name="name">kanban.view.name</field>
+	<field name="model">model.name</field>
+	<field name="arch" type="xml">
+		<kanban>
+				<field name="name"/> # it has to be refered here first, before printing it in span tag.
+				<templates>
+					<t t-name="kanban-box">
+						<div class="oe_kanban_global_click"> # this one is gonna make it clickable
+							<div class="oe_kanban_details d-flex flex-column">
+								<ul>
+									<li>Name:- <field name="name"/> </li> # by doing that, it will be displayed with a description before the field.
+								</ul>
+							</div>
+						</div>
+					</t>
+				</templates>
+		</kanban>
+	</field>
+</record>
+
+
+
+
+
+
+how to add image in kanban view:
+
+<kanban>
+	<field name="name"/> # it has to be refered here first, before printing it in span tag.
+	<field name="id"/>
+	<field name="student_image"/>
+		<templates>
+			<t t-name="kanban-box">
+				<div class="oe_kanban_global_click o_kanban_record_has_image_fill"> # this one is gonna make it clickable
+					<div class="o_kanban_image d-none d-md-block"
+								t-attf-style="background-image:url('#{kanban_image('model.name', 'student_image', record.id.raw_value, placeholder)}')">
+						<img class=""o_kanban_image_inner_pic" 
+							 t-att-src="kanban_image('model.name', 'student_image', record.id.raw_value)"/>
+					</div>
+					<div class="oe_kanban_details d-flex flex-column">
+						<ul>
+							<li>Name:- <field name="name"/> </li> # by doing that, it will be displayed with a description before the field.
+						</ul>
+					</div>
+				</div>
+			</t>
+		</templates>
+</kanban>
+
+
+
+
+
+
+
+how to active disable drag and drop feature in kanban view:
+
+
+in action:
+
+<record model...
+	...
+	 <field name="context">{'group_by':'state'}</field>
+	<field name="view_mode">kanban,tree,form</field>
+</record>
+
+
+by default, the drag and drop option is avaible in kanban view, but for disabling it is necessay:
+
+<kanban records_draggable="0"> # responsible for stop drag and frop feature.
+	<field name="name"/> # it has to be refered here first, before printing it in span tag.
+	<field name="id"/>
+	<field name="student_image"/>
+		....
+		</templates>
+</kanban>
+
+
+or 
+
+
+<kanban records_draggable="0">
+	<field name="name"/> # it has to be refered here first, before printing it in span tag.
+	<field name="id"/>
+	<field name="student_image"/>
+	<field name="state" readonly="1"/> # responsible for stop drag and frop feature.
+		....
+		</templates>
+</kanban>
+
+
+
+
+
+
+
+
+
+
+

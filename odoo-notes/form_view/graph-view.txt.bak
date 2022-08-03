@@ -1,0 +1,102 @@
+<record id="graph_view_name" model="ir.ui.view">
+	<field name="name">graph.view.name</field>
+	<field name="model">model.name</field>
+	<field name="arch" type="xml">
+		<graph/>
+			<field name="school_id"/> # Many2one field
+			<field name="bdate"/>
+		</graph>
+	</field>
+</record>
+
+for graph view be visible, it has to be add at action:
+
+<record model...
+	...
+	...
+	<field name="view_mode">graph,calendar,kanban,tree,form</field>
+</record>
+
+
+
+
+
+after that, the graph will be avaible on client side. On our case, it will be shown all schools with the students records based on birthday, and by clicking on the record
+it will open the record it self.
+
+for disable that feature:
+
+
+<record id="graph_view_name" model="ir.ui.view">
+	<field name="name">graph.view.name</field>
+	<field name="model">model.name</field>
+	<field name="arch" type="xml">
+		<graph disable_linking="1">
+			<field name="school_id"/> # Many2one field
+			<field name="bdate"/>
+		</graph>
+	</field>
+</record>
+
+
+
+
+
+
+for defaulting measure field:
+
+<record id="graph_view_name" model="ir.ui.view">
+	<field name="name">graph.view.name</field>
+	<field name="model">model.name</field>
+	<field name="arch" type="xml">
+		<graph disable_linking="1">
+			<field name="school_id"/> # Many2one field
+			<field name="bdate"/>
+			<field name="total_fees" type="measure"/>
+		</graph>
+	</field>
+</record>
+
+
+all measure fields that will be shown on graph view, will be related to integer, monetary or float fields on your model.
+
+
+
+
+
+
+
+
+on year field used by parameter on graph, it can be setted as day,week,month,quarter,year:
+
+<record id="graph_view_name" model="ir.ui.view">
+	<field name="name">graph.view.name</field>
+	<field name="model">model.name</field>
+	<field name="arch" type="xml">
+		<graph disable_linking="1">
+			<field name="school_id"/> # Many2one field
+			<field name="bdate" interval="day,week,month,quarter,year"/>
+			<field name="total_fees" type="measure"/>
+		</graph>
+	</field>
+</record>
+
+
+
+
+
+
+
+passing the default type of graph:
+
+<record id="graph_view_name" model="ir.ui.view">
+	<field name="name">graph.view.name</field>
+	<field name="model">model.name</field>
+	<field name="arch" type="xml">
+		<graph disable_linking="1" type="bar,line,pie">
+			<field name="school_id"/> # Many2one field
+			<field name="bdate" interval="day,week,month,quarter,year"/>
+			<field name="total_fees" type="measure"/>
+		</graph>
+	</field>
+</record>

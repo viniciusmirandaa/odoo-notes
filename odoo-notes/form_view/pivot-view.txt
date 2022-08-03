@@ -1,0 +1,78 @@
+Analytic View:
+
+<record id="pivot_view_name" model="ir.ui.view">
+	<field name="name">pivot.view.name</field>
+	<field name="model">model.name</field>
+	<field name="arch" type="xml">
+		<pivot>
+			<field name="name"/>
+			<field name="school_id"/>
+		</pivot>
+	</field>
+</record>
+
+
+<record model...
+	...
+	...
+	<field name="view_mode">pivot,graph,calendar,kanban,tree,form</field>
+</record>
+
+
+the main difference in this type of view, is that you got a analytic perspective of your records.
+
+example:
+
+if you choose to display the name field, it will account every name with its total.
+
+and if you select both name and school_id field, it will display the name discriminating the school_id for each of them.
+
+
+
+
+
+
+by default the measure its 'count', to change that:
+
+<record id="pivot_view_name" model="ir.ui.view">
+	<field name="name">pivot.view.name</field>
+	<field name="model">model.name</field>
+	<field name="arch" type="xml">
+		<pivot>
+			<field name="name"/>
+			<field name="school_id"/>
+			<field name="total_fees" type="measure"/>
+		</pivot>
+	</field>
+</record>
+
+
+
+
+
+
+if by default you want to know the total_fees for every school on each name:
+
+<record id="pivot_view_name" model="ir.ui.view">
+	<field name="name">pivot.view.name</field>
+	<field name="model">model.name</field>
+	<field name="arch" type="xml">
+		<pivot>
+			<field name="name" type="row"/>
+			<field name="school_id" type="column"/>
+			<field name="total_fees" type="measure"/>
+		</pivot>
+	</field>
+</record>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,30 @@
+sheet tag will create a 'box' and put form view inside of it.
+
+by adding a string attribute in group tag, it will display a label for that group.
+
+<group string="Label">...
+
+
+
+
+
+for widget statusbar, we can use the attribute statusbar_visible, that will specify which fields we want to display in state of status.
+
+<field name="state" widget="statusbar" statusbar_visible="draft,done"
+
+
+that way, we can click in statusbar.
+
+<field name="state" widget="statusbar" options="{'clickable':1}"
+
+
+
+
+
+by using a page, it is necessary to use the following structure:
+
+<notebook>
+	<page string="Page Name">
+		fields...
+	</page>
+</notebook>

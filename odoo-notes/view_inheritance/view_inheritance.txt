@@ -1,0 +1,106 @@
+<field></field> and <xpath></xpath> can extend any views.
+
+after: if you want to place your field after the refered field.
+before: if you want to place your field before the refered field.
+inside: if you want to place your field inside a group or page.
+replace: if you want to replace the refered field by yours.
+attributes: to add, change or override an field's attribute.
+
+
+
+
+
+
+
+
+using <field></field> tag:
+
+<record id="student_list_view_extend" model="ir.ui.view">
+	<field name="name">student.list.view.extend</field>
+	<field name="model">school.student</field>
+	<field name="inherit_id" ref="module_name.xml_id"/>
+	<field name="arch" type="xml">
+		<field name="id" position="after"> # id has to be at refered model
+			<field name="write_date"/>
+			<field name="write_uid"/> # it can be defined more than one field
+		</field>
+		<field name="id" position="after"> 
+			<h1>Hello</h1>
+			<group>
+				<field name="write_uid"/>
+			</group>
+			<field name="write_date"/>
+		</field>
+	</field>
+</record>
+
+with <field> it is a easier way to inherit view.
+
+
+
+
+
+
+
+
+
+using <xpath></xpath> tag:
+
+
+<record id="student_list_view_extend" model="ir.ui.view">
+	<field name="name">student.list.view.extend</field>
+	<field name="model">school.student</field>
+	<field name="inherit_id" ref="module_name.xml_id"/>
+	<field name="arch" type="xml">
+		<xpath expr"//form//sheet//notebook//page[1]//group[2]//group[2]//field[@name='create_uid']" position="after">
+			<field name="write_uid"/>
+			<field name="write_date"/>
+		</xpath>
+	</field>
+</record>
+
+or
+
+<record id="student_list_view_extend" model="ir.ui.view">
+	<field name="name">student.list.view.extend</field>
+	<field name="model">school.student</field>
+	<field name="inherit_id" ref="module_name.xml_id"/>
+	<field name="arch" type="xml">
+		<xpath expr"//field[@name='create_uid']" position="after">
+			<field name="write_uid"/>
+			<field name="write_date"/>
+		</xpath>
+	</field>
+</record>
+
+or
+
+<record id="student_list_view_extend" model="ir.ui.view">
+	<field name="name">student.list.view.extend</field>
+	<field name="model">school.student</field>
+	<field name="inherit_id" ref="module_name.xml_id"/>
+	<field name="arch" type="xml">
+		<xpath expr"//page[1]//group[2]//group[2]" position="inside">
+			<field name="write_uid"/>
+			<field name="write_date"/>
+		</xpath>
+	</field>
+</record>
+
+
+in expr attribute, we have to give the steps to get the desired field:
+
+form-->sheet-->notebook-->page-->group[2]-->specific field
+
+
+with <xpath></xpath> you can give all the parent-child path.
+
+
+
+
+
+
+
+
+
+

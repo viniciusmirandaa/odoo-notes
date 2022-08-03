@@ -1,0 +1,32 @@
+with this feature, we can add attributes to our field.
+
+
+
+
+<record id="student_list_view_extend" model="ir.ui.view">
+	<field name="name">student.list.view.extend</field>
+	<field name="model">school.student</field>
+	<field name="inherit_id" ref="module_name.xml_id"/>
+	<field name="arch" type="xml">
+		<field name="id" position="attributes"> 
+			<attribute name="required">1</attribute>
+		</field>
+	</field>
+</record>
+
+
+
+
+
+
+
+<record id="student_list_view_extend" model="ir.ui.view">
+	<field name="name">student.list.view.extend</field>
+	<field name="model">school.student</field>
+	<field name="inherit_id" ref="module_name.xml_id"/>
+	<field name="arch" type="xml">
+		<xpath expr="//field[@name="roll_number"]" position="attributew">
+			<attribute name="required">0</attribute>
+		</xpath>
+	</field>
+</record>

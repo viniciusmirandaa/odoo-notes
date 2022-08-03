@@ -1,0 +1,63 @@
+we use post_load_hook when to execute some kind of operation after restarting module service.
+
+
+
+add this hook on manifest file:
+ 
+'post_load_hook':'hook_example_post_init'
+
+
+
+
+
+case:
+
+we want to update http method.
+
+
+
+with raw query:
+
+on __init__.py file, create a method:
+
+def hook_example_post_init():
+	cr.execute("update res_partner set vat='' where vat='123456'");
+	cr.commit()
+	
+	
+	
+	
+	
+	
+with orm:
+
+on __init__.py file, create a method:
+
+from odoo import api, SUPERUSER_ID
+from odoo import WebRequest
+
+def hook_example_post_init():
+	monkey_patch_set_handler = WebRequest.set_handler
+	
+	def set_handler(self, endpoint, arguments, auth): # parent method parameters
+		monkey_patch_set_handler(self, endpoint, arguments, auth)
+	
+	WebRequest.set_handler = set_handler
+	
+	monkey_page_init = WebRequest.__init__
+	
+	def __init__(self, httprequest):
+		monkey_page_init(self, httprequest)
+		self.weblearns = "post load hook"
+	
+	WebRequest.__init__ = __init__
+	
+
+on inherited res_partner model:
+
+class Partner(models.Model):
+	_inherit="res.partner"
+	
+	for rec in self.search([]):
+		if rec.vat == '123456':
+			rec.vat = ''

@@ -1,0 +1,66 @@
+we use pre_init_hook when to execute some kind of operation after installing a module.
+
+
+add this hook on manifest file:
+ 
+'pre_init_hook':'hook_example_pre_init'
+
+
+
+on __init__.py file, create a method:
+
+def hook_example_pre_init(cr):
+	print("pre init hook")
+	
+
+after install the module, this method will be called.
+
+
+
+real case:
+
+we want to update all contact's mobile number when mobile is none.
+
+
+
+
+
+
+
+with raw query:
+
+manifest:
+'pre_init_hook':'hook_example_pre_init'
+
+
+__init__.py:
+def update_contact_mobile(cr):
+	cr.execute("""update res_partner set mobile='123456' where mobile is null""");
+	cr.commit()
+	
+
+
+
+
+
+
+with orm:
+
+__init__.py:
+
+from odoo import api, SUPERUSER_ID
+
+def hook_example_post_init(cr):
+	env = api.Environment(cr, SUPERUSER_ID, {})
+	env['res.partner'].pre_hook()
+	
+on inherited res_partner model:
+
+class Partner(models.Model):
+	_inherit="res.partner"
+	
+	for rec in self.search([]):
+		if rec.mobile == False:
+			rec.mobile = '123456'
+		
+	
