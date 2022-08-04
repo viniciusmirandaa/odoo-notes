@@ -1,0 +1,70 @@
+create a model with field from both models.
+
+
+
+add both models on manifest depends list.
+
+on model side:
+
+class StudentSchoolDynamicView(models.Model):
+	_name = "student.school.dynamic.view"
+	_auto = False
+	
+	school_name = field.Char("School Name")
+	school_phone = field.Char("School Phone")
+	school_email = field.Char("School Email")
+	school_type = field.Selection(
+			string = "School Name",
+			selection = 
+			[
+				('public', 'Public School'),
+				('private', 'Private School')
+			]
+	)
+	
+	student_name = fields.Char("Student Name")
+	student_email = fields.Char("Student Email")
+	student_rno = fields.Char("Student Roll Number")
+	student_fees = fields.Float("Student Fees")
+	
+	def int(self):
+		tools.drop_view_if_exists(self.env.cr, self._table)
+		self.env.cr.execute("""
+		create or replace view {} as (
+			select std.id, 
+			std.roll_number as student_rno, 
+			std.name asstudent_name,  
+			sp.name as school_name,
+			sp.email as school_email,
+			sp.phone as school_phone,
+			sp.school_type as school_type
+			std.student_fees as student_fees 
+			from school_student as std join school_profile as sp
+			on std.school_id = sp.id)
+		""")
+	
+	
+	
+on xml side:
+
+<odoo>
+	<record id="dynamic_student_list_view" model="ir.ui.view">
+		<field name="name">dynamic.student.list.view</field>
+		<field name="model">student.school.dynamic.view</field>
+		<field name="arch" type="xml">
+			<field name="school_name"/>
+			<field name="school_phone"/>
+			<field name="school_email"/>
+			<field name="school_type"/>
+			<field name="student_name"/>
+			<field name="student_email"/>
+			<field name="student_rno"/>
+			<field name="student_fees"/>
+		</field>
+	</record>
+</odoo>
+
+action and menu records...
+
+
+
