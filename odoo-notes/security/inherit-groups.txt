@@ -1,0 +1,12 @@
+to inherit an exist group:
+
+<record id="access_for_student_profile_group_extend" model="res.groups"> 
+	<field name="name">Studend Accounting</field> 
+	<field name="category_id" ref="base.category_id"/>
+	<field name="implied_ids" eval="[(6,0,[ref('analytic.group_analytic_accounting'), ref('analytic.group_analytic_tags')])]"/>
+</record>
+
+
+automatically after checking 'Student Accounting' group, it will check the groups specified on 'implied_ids' tag.
+
+it is not possible to uncheck an implied group.

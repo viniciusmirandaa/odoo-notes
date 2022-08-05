@@ -1,0 +1,31 @@
+<record id="access_for_student_profile_group" model="res.groups"> 
+	<field name="name">Studen Profile Groups</field> 
+</record>
+
+this will create a group at OTHER label in users security rules.
+
+
+<odoo>
+	<record id="school_student_profile_end_user_all_permission" model="ir.model.access"> id
+		<field name="name">End user permission</field> name
+		<field name="model_id" ref="model_model_name"></field> model_id:id
+		<field name="group_id" ref="school.access_for_student_profile_group"/>
+		<field name="perm_read">1</field>
+		<field name="perm_create">1</field>
+		<field name="perm_write">1</field>
+		<field name="perm_unlink">1</field>
+	</record>
+</odoo>
+
+only the refered group_id has the previously permissions.
+
+
+
+<record id="access_for_student_profile" model="ir.rule"> 
+	<field name="name">Access Student Profile</field> 
+	<field name="model_id" ref="model_model_name"></field> 
+	<field name="domain_force">[('create_uid', '=', user.id)]</field>
+	<field name="groups" eval="[(4, ref('school.access_for_student_profile_group'))]"/>
+</record>
+
+it will allow only the refere group to have access.

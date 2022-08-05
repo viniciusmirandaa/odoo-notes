@@ -1,0 +1,15 @@
+for creating a selection type for groups:
+
+<record id="my_custom_category" model="ir.module.category"> 
+	<field name="name">Student Profile</field> 
+</record>
+
+
+
+<record id="access_for_student_profile_group" model="res.groups"> 
+	<field name="name">Studen Profile 1</field> 
+	<field name="category_id" ref="module_name.category_id"/>
+</record>
+
+
+it will create a label for Student Profile, and inside of it, it will have the group Studen Profile 1.

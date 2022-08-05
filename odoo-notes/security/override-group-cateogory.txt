@@ -1,0 +1,7 @@
+go to ir_module_category_data.xml in odoo base and copy the group id.
+
+
+<record id="access_for_student_profile_group" model="res.groups"> 
+	<field name="name">Studen Profile 1</field> 
+	<field name="category_id" ref="base.category_id"/>
+</record>
