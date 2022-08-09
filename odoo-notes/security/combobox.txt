@@ -1,0 +1,33 @@
+<record id="my_custom_category" model="ir.module.category"> 
+	<field name="name">Student</field> 
+</record>
+
+<record id="my_custom_sub_category" model="ir.module.category"> 
+	<field name="name">Student</field> 
+	<field name="parent_id" ref="school.my_custom_category"/>
+</record>
+
+<record id="access_for_student_profile_low" model="res.groups"> 
+	<field name="name">Studend Low</field>
+	<field name="category_id" ref="module_name.my_custom_sub_category"/>
+</record>
+
+<record id="access_for_student_profile_mid" model="res.groups"> 
+	<field name="name">Studend Mid</field> 
+	<field name="category_id" ref="module_name.my_custom_sub_category"/>
+	<field name="implied_ids" eval="[(6,0,[ref('school.access_for_student_profile_low')])]"/>
+</record>
+
+<record id="access_for_student_profile_admin" model="res.groups"> 
+	<field name="name">Studend Admin</field> 
+	<field name="category_id" ref="module_name.my_custom_sub_category"/>
+	<field name="implied_ids" eval="[(6,0,[ref('school.access_for_student_profile_low')])]"/>
+</record>
+
+
+
+by doing that, it will create a label called Student and a category with sort type selection field on it, with the groups mentioned before.
+
+
+
+

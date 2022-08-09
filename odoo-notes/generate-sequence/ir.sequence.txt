@@ -1,0 +1,27 @@
+in purpose of generating an automatic sequence number:
+
+seq = fields.Char(
+	string="Sequence",
+	readonly=1
+)
+
+xml view side:
+
+<h1><field name="seq" nolabel="1"/></h1>
+
+
+
+xml data side:
+
+<record id="school_code_sequence_name" model="ir.sequence">
+	<field name="name">Sequence</field>
+	<field name="code">model.name</field>
+	<field name="prefix">School</field>
+	<field name="number_increment" eval="1"/>
+</record>
+	
+	
+	
+create method:
+
+vals['school_seq_name'] = self.env['ir.sequence'].next_by_code("model.name")
